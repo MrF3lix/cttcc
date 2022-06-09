@@ -1,6 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CT2 Timer Counter Calculator
+
+## About
+
+This Calculator should provide some help in solving exam questions conserning Timers and Counters.
+
+It moddels this model of Timers/Counters described in CT2
+
+![Diagram](./public/cttc.PNG)
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 First, run the development server:
 
