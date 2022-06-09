@@ -9,13 +9,13 @@ Pulses given
 
 */
 
-const prescalerMax = 10**6
+const prescalerMax = 10 ** 6
 
 function getPrescalerAndARR(pulsesInHz, periodInNs) {
     let solutions = []
     for (let prescaler = 0; prescaler < prescalerMax; prescaler++) {
-        const arr = (periodInNs * pulsesInHz) / ( 10**9 * prescaler)
-        if(arr % 1 == 0) solutions.push([prescaler, arr])
+        const arr = (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
+        if (arr % 1 == 0) solutions.push([prescaler, arr])
     }
     return solutions
 }
@@ -31,7 +31,7 @@ function getARR(pulsesInHz, periodInNs, prescaler) {
     let directerArr = (periodInNs * pulsesInHz) / ( 10**9 * prescaler)
     */
 
-    return (periodInNs * pulsesInHz) / ( 10**9 * prescaler)
+    return (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
 }
 
 function getPrescaler(pulsesInHz, periodInNs, arr) {
@@ -46,9 +46,20 @@ function getPrescaler(pulsesInHz, periodInNs, arr) {
     let better3 = (pulsesInHz * periodInNs) / (arr * 10**9)
     */
 
-    return (periodInNs * pulsesInHz) / ( 10**9 * arr)
+    return (periodInNs * pulsesInHz) / (10 ** 9 * arr)
+}
+
+function getPeriodInSeconds(pulsesInHz, prescaler, arr) {
+    /*
+    let ticksInHz = pulsesInHz / prescaler
+    let secondsPerTick = 1 / ticksInHz
+    let period = secondsPerTick * arr
+    let better = prescaler * arr / pulsesInHz
+    */
+
+    return prescaler * arr / pulsesInHz
 }
 
 
-let solutions = getPrescalerAndARR(10**7, 62 * 1000000)
+let solutions = getPrescalerAndARR(10 ** 7, 62 * 1000000)
 console.table(solutions)
