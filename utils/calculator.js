@@ -1,21 +1,21 @@
 /*
 Calculations needed:
 
-Pulses given
+Pulses given:
     1. Period given -> return Prescaler & ARR | Done
     2. ARR and Period given  -> return Prescaler | Done
     3. Prescaler and Period given -> return ARR | Done
-    3. ARR and Prescaler given  -> return Period | TODO
+    3. ARR and Prescaler given  -> return Period | Done
 
 */
 
-const prescalerMax = 10 ** 6
+const prescalerMax = 2 ** 16
 
-function getPrescalerAndARR(pulsesInHz, periodInNs) {
+function getPrescalerAndARR(pulsesInHz, periodInNs, arrMax) {
     let solutions = []
     for (let prescaler = 0; prescaler < prescalerMax; prescaler++) {
         const arr = (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
-        if (arr % 1 == 0) solutions.push([prescaler, arr])
+        if (arr <= arrMax && arr % 1 == 0) solutions.push([prescaler, arr])
     }
     return solutions
 }
@@ -61,5 +61,5 @@ function getPeriodInSeconds(pulsesInHz, prescaler, arr) {
 }
 
 
-let solutions = getPrescalerAndARR(10 ** 7, 62 * 1000000)
+let solutions = getPrescalerAndARR(10 ** 7, 62 * 1000000, 2 ** 32)
 console.table(solutions)
