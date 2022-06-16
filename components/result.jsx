@@ -4,7 +4,7 @@ export const Result = ({ result }) => {
     if (!result) return <></>
 
     return (
-        <div className="">
+        <div className="mt-20">
 
             <div className="my-5">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Inputs</h3>
