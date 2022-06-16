@@ -33,6 +33,6 @@ const hasPulsePeriod = input => exist(input.pulse) && exist(input.period)
 const hasPulsePeriodArr = input => exist(input.pulse) && exist(input.period) && exist(input.arr)
 const hasPulsePeriodPrescaler = input => exist(input.pulse) && exist(input.period) && exist(input.prescaler)
 const hasPulseArrPrescaler = input => exist(input.pulse) && exist(input.arr) && exist(input.prescaler)
-const hasPeriodArrPrescaler = input => exist(input.pulse) && exist(input.period) && exist(input.prescaler)
+const hasPeriodArrPrescaler = input => exist(input.period) && exist(input.arr) && exist(input.prescaler)
 
 const exist = val => val && val.length > 0

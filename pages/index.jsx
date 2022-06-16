@@ -1,8 +1,15 @@
 import { useState } from "react"
 import { CalculatorForm } from "../components/calculator-form"
 import { Result } from "../components/result"
-import { getARR, getPrescaler, getPrescalerAndARR } from "../utils/calculator"
-import { getCalculatorMode, CALC_PRESCALER_ARR, CALC_PRESCALER, CALC_ARR, CALC_PERIOD } from "../utils/calculator-mode"
+import { getARR, getPrescaler, getPrescalerAndARR, getPulsesInHz } from "../utils/calculator"
+import {
+    getCalculatorMode,
+    CALC_PRESCALER_ARR,
+    CALC_PRESCALER,
+    CALC_ARR,
+    CALC_PERIOD,
+    CALC_PULSES
+} from "../utils/calculator-mode"
 
 const inputFields = {
     'pulse': { displayName: 'Pulses', unit: 'Hz' },
@@ -40,6 +47,8 @@ const Index = () => {
             case CALC_PERIOD:
                 res = getPeriodInSeconds(data.pulse, data.prescaler, data.arr)
                 break
+            case CALC_PULSES:
+                res = getPulsesInHz(data.period, data.arr, data.prescaler)
             default:
                 setError("Could not find a value to calculate. Are you missing some input values?")
                 break
