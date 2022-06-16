@@ -15,19 +15,21 @@ Pulses not given:
 */
 
 const prescalerMax = 2 ** 16
+const arrMax = 2 ** 32
 
-export const getPrescalerAndARR = (pulsesInHz, periodInNs, arrMax = 2 ** 32) => {
+export const getPrescalerAndARR = (pulsesInHz, periodInMs) => {
+    console.log(pulsesInHz, periodInMs)
     let solutions = []
     for (let prescaler = 0; prescaler < prescalerMax; prescaler++) {
-        const arr = (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
-        if (arr <= arrMax && arr % 1 == 0){ 
+        const arr = (periodInMs * pulsesInHz) / (10 ** 3 * prescaler)
+        if (arr <= arrMax && arr % 1 === 0){ 
             solutions.push({prescaler, arr})
         }
     }
     return solutions
 }
 
-export const getARR = (pulsesInHz, periodInNs, prescaler) => {
+export const getARR = (pulsesInHz, periodInMs, prescaler) => {
     /*
     let ticksInHz = pulsesInHz / prescaler
     let secondsPerTick = 1 / ticksInHz;
@@ -38,10 +40,10 @@ export const getARR = (pulsesInHz, periodInNs, prescaler) => {
     let directerArr = (periodInNs * pulsesInHz) / ( 10**9 * prescaler)
     */
 
-    return (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
+    return (periodInMs * pulsesInHz) / (10 ** 3 * prescaler)
 }
 
-export const getPrescaler = (pulsesInHz, periodInNs, arr) => {
+export const getPrescaler = (pulsesInHz, periodInMs, arr) => {
     /*
     let nsPerTick = periodInNs / arr
     let sPerTick = nsPerTick / 10**9
@@ -53,7 +55,7 @@ export const getPrescaler = (pulsesInHz, periodInNs, arr) => {
     let better3 = (pulsesInHz * periodInNs) / (arr * 10**9)
     */
 
-    return (periodInNs * pulsesInHz) / (10 ** 9 * arr)
+    return (periodInMs * pulsesInHz) / (10 ** 3 * arr)
 }
 
 export const getPeriodInSeconds = (pulsesInHz, prescaler, arr) => {
@@ -67,7 +69,7 @@ export const getPeriodInSeconds = (pulsesInHz, prescaler, arr) => {
     return prescaler * arr / pulsesInHz
 }
 
-function getPulsesInHz(periodInNs, arr, prescaler){
+export const getPulsesInHz = (periodInMs, arr, prescaler) => {
     /*
     let nsPerPulse = periodInNs / (arr * prescaler)
     let secondsPerPulse = nsPerPulse / 10 ** 9
@@ -77,7 +79,7 @@ function getPulsesInHz(periodInNs, arr, prescaler){
     let better2 = (arr * prescaler * 10 ** 9) / periodInNs
     */
 
-    return (arr * prescaler * 10 ** 9) / periodInNs
+    return (arr * prescaler * 10 ** 3) / periodInMs
 }
 
 // Testing
