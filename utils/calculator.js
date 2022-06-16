@@ -16,14 +16,11 @@ Pulses not given:
 
 const prescalerMax = 2 ** 16
 
-function getPrescalerAndARR(pulsesInHz, periodInNs, arrMax) {
+export const getPrescalerAndARR = (pulsesInHz, periodInNs, arrMax = 2 ** 32) => {
     let solutions = []
     for (let prescaler = 0; prescaler < prescalerMax; prescaler++) {
         const arr = (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
         if (arr <= arrMax && arr % 1 == 0){ 
-            console.log("-----------------------")
-            console.log(pulsesInHz)
-            console.log(getPulsesInHz(periodInNs, arr, prescaler))    
             solutions.push({prescaler, arr})
         }
     }

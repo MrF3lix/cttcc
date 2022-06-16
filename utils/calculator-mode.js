@@ -1,26 +1,32 @@
-export const getCalculatorMode = (input) => {
+export const CALC_PRESCALER_ARR = 0
+export const CALC_PRESCALER = 1
+export const CALC_ARR = 2
+export const CALC_PERIOD = 3
+export const CALC_PULSES = 4
+export const UNKNOWN_OPERATION = -1
 
+export const getCalculatorMode = (input) => {
     if (hasPulsePeriodArr(input)) {
-        return 0
+        return CALC_PRESCALER
     }
 
     if (hasPulsePeriodPrescaler(input)) {
-        return 1
+        return CALC_ARR
     }
 
     if (hasPulsePeriod(input)) {
-        return 2
+        return CALC_PRESCALER_ARR
     }
 
     if (hasPulseArrPrescaler(input)) {
-        return 3
+        return CALC_PERIOD
     }
 
     if (hasPeriodArrPrescaler(input)) {
-        return 4
+        return CALC_PULSES
     }
 
-    return -1
+    return UNKNOWN_OPERATION
 }
 
 const hasPulsePeriod = input => exist(input.pulse) && exist(input.period)
