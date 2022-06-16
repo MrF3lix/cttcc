@@ -82,6 +82,45 @@ export const getPulsesInHz = (periodInMs, arr, prescaler) => {
     return (arr * prescaler * 10 ** 3) / periodInMs
 }
 
+// Duty Cycle
+
+export const getCCR = (arr, upDownMode, pwmMode, cyclePercent) => {
+    // Up-Counting
+    let arrCycle = Math.floor(arr * (cyclePercent/100))
+    
+    if (upDownMode === 0) { 
+        if(pwmMode === 1) return arrCycle
+        if(pwmMode === 2) return arr - arrCycle
+    }
+    // Down-Counting
+    if (upDownMode === 1) {
+        if(pwmMode === 1) return arrCycle
+        if(pwmMode === 2) return arr - arrCycle - 1
+    }
+
+    
+    // cycle = 80%
+    // arr   = 100
+    // 80%ARR= 80
+    
+    // Up-Counting
+    //      Mode 1 => if CNT < CCR
+    //      Mode 1: CCR = 80
+
+    //      Mode 2 => if CNT >= CCR
+    //      Mode 2: CCR = 20
+
+    // Down-Counting
+    //      Mode 1 => if CNT <= CCR
+    //      Mode 1: CCR = 80
+
+    //      Mode 2 => if CNT > CCR
+    //      Mode 2: CCR = 10
+    
+}
+
+
+
 // Testing
 
 // let pulsesInHz = 10 ** 7
@@ -90,3 +129,12 @@ export const getPulsesInHz = (periodInMs, arr, prescaler) => {
 
 // let solutions = getPrescalerAndARR(pulsesInHz, periodInNs, arrMax)
 // console.table(solutions)
+
+// PWM
+
+// let ARR = 10
+// let cyclePercent = 80
+// console.log(getCCR(ARR, 0, 1, cyclePercent))
+// console.log(getCCR(ARR, 0, 2, cyclePercent))
+// console.log(getCCR(ARR, 1, 1, cyclePercent))
+// console.log(getCCR(ARR, 1, 2, cyclePercent))
