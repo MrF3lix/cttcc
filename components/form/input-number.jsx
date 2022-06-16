@@ -1,10 +1,12 @@
-export const InputNumber = ({ label, description, value, setValue, ...rest }) => (
+export const InputNumber = ({ id, label, description, value, setValue, ...rest }) => (
     <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
         <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
             {label}
         </label>
         <div className="mt-1 sm:mt-0">
             <input
+                id={id}
+                name={id}
                 value={value}
                 setValue={setValue}
                 type="number"

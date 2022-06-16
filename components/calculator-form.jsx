@@ -1,8 +1,8 @@
 import { InputNumber } from "./form/input-number";
 import { InputSelect } from "./form/input-select";
 
-export const CalculatorForm = () => (
-    <form className="space-y-8 divide-y divide-gray-200">
+export const CalculatorForm = ({onSubmit}) => (
+    <form className="space-y-8 divide-y divide-gray-200" onSubmit={onSubmit}>
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                 <div>
@@ -12,36 +12,42 @@ export const CalculatorForm = () => (
                 <div className="space-y-6 sm:space-y-5">
                     <InputNumber
                         label="Pulses [Hz]"
+                        id="pulse"
                         defaultValue={84_000_000}
                         description="Describes the incoming frequency from either the internal clock or an other timers."
                     />
                     <InputNumber
                         label="Prescaler"
+                        id="prescaler"
                         defaultValue={8_400}
                         description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
                     />
                     <InputNumber
                         label="AAR"
+                        id="aar"
                         defaultValue={2_000}
                         description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
                     />
                     <InputNumber
                         label="Ticks [Hz]"
+                        id="ticks"
                         defaultValue={10_000}
                         description="Ticks equal the output for the prescaler (Pulse/Prescaler)."
                     />
-                    <InputNumber
-                        label="Period [ns]"
+                    {/* <InputNumber
+                        label="Tick [ns]"
                         defaultValue={100_000}
                         description="Time it takes for one tick."
-                    />
+                    /> */}
                     <InputNumber
-                        label="Time to Overflow [ms"
+                        label="Period [ms]"
+                        id="period"
                         defaultValue={200}
-                        description="Time it takes for one tick."
+                        description="Time it takes to reach the overflow (Tick * AAR)"
                     />
                     <InputSelect
                         label="Mode"
+                        id="mode"
                         defaultValue={0}
                         options={[
                             { value: 0, label: 'Up Counting' },
@@ -58,12 +64,15 @@ export const CalculatorForm = () => (
                 <div className="space-y-6 sm:space-y-5">
                     <InputNumber
                         label="Duty Cycle [%]"
+                        id="duty-cycle"
                     />
                     <InputNumber
                         label="CCR"
+                        id="cct"
                     />
                     <InputSelect
                         label="PWM Mode"
+                        id="pwm-mode"
                         defaultValue={0}
                         options={[
                             { value: 0, label: 'Mode 1' },
