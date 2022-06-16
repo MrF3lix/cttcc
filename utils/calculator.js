@@ -24,7 +24,7 @@ function getPrescalerAndARR(pulsesInHz, periodInNs, arrMax) {
             console.log("-----------------------")
             console.log(pulsesInHz)
             console.log(getPulsesInHz(periodInNs, arr, prescaler))    
-            solutions.push([prescaler, arr])
+            solutions.push({prescaler, arr})
         }
     }
     return solutions
@@ -85,5 +85,9 @@ function getPulsesInHz(periodInNs, arr, prescaler){
 
 // Testing
 
-let solutions = getPrescalerAndARR(10 ** 7, 62 * 1000000, 2 ** 32)
+let pulsesInHz = 10 ** 7
+let periodInNs = 62 * 1000000
+let arrMax = 2 ** 32
+
+let solutions = getPrescalerAndARR(pulsesInHz, periodInNs, arrMax)
 console.table(solutions)

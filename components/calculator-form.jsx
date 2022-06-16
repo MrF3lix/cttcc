@@ -12,20 +12,32 @@ export const CalculatorForm = () => (
                 <div className="space-y-6 sm:space-y-5">
                     <InputNumber
                         label="Pulses [Hz]"
-                        placeholder={84_000}
+                        defaultValue={84_000_000}
                         description="Describes the incoming frequency from either the internal clock or an other timers."
                     />
                     <InputNumber
                         label="Prescaler"
-                        placeholder={1}
+                        defaultValue={8_400}
                         description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
                     />
                     <InputNumber
+                        label="AAR"
+                        defaultValue={2_000}
+                        description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
+                    />
+                    <InputNumber
                         label="Ticks [Hz]"
+                        defaultValue={10_000}
                         description="Ticks equal the output for the prescaler (Pulse/Prescaler)."
                     />
                     <InputNumber
                         label="Period [ns]"
+                        defaultValue={100_000}
+                        description="Time it takes for one tick."
+                    />
+                    <InputNumber
+                        label="Time to Overflow [ms"
+                        defaultValue={200}
                         description="Time it takes for one tick."
                     />
                     <InputSelect
