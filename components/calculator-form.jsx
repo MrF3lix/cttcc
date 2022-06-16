@@ -3,18 +3,20 @@ import { InputSelect } from "./form/input-select";
 import { useState } from "react";
 import ToggleButton from "./toggle-button";
 
-export const CalculatorForm = ({ onSubmit }) => {
-    
-    const [ displayDCInputs, setDisplayDCInputs ] = useState(false)
-    
+export const CalculatorForm = ({ onSubmit, error }) => {
+
+    const [displayDCInputs, setDisplayDCInputs] = useState(false)
+
     return (
-        <form className="space-y-8 divide-y divide-gray-200"onSubmit={onSubmit}>
+        <form className="space-y-8 divide-y divide-gray-200" onSubmit={onSubmit}>
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                     <div>
                         <h3 className="text-lg leading-6 font-medium text-gray-900">Default Inputs</h3>
-                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Fill in all the given information and see
-                            the magic happen.</p>
+                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Fill in all the given information and see the magic happen.</p>
+                        {error &&
+                            <p className="mt-1 max-w-2xl text-sm text-red-500">{error}</p>
+                        }
                     </div>
                     <div className="space-y-6 sm:space-y-5">
                         <InputNumber
@@ -48,11 +50,11 @@ export const CalculatorForm = ({ onSubmit }) => {
                             description="Time it takes to reach the overflow (Tick * AAR)"
                         />
                         <InputSelect
-                            label="Mode"id="mode"
+                            label="Mode" id="mode"
                             defaultValue={0}
                             options={[
-                                {value: 0, label: 'Up Counting'},
-                                {value: 1, label: 'Down Counting'}
+                                { value: 0, label: 'Up Counting' },
+                                { value: 1, label: 'Down Counting' }
                             ]}
                         />
                     </div>
@@ -72,22 +74,22 @@ export const CalculatorForm = ({ onSubmit }) => {
                         </div>
                         <div className="space-y-6 sm:space-y-5">
                             <InputNumber
-                                label="Duty Cycle [%]"id="duty-cycle"
+                                label="Duty Cycle [%]" id="duty-cycle"
                             />
                             <InputNumber
                                 label="CCR"
-                            id="cct"/>
+                                id="cct" />
                             <InputSelect
-                                label="PWM Mode"id="pwm-mode"
+                                label="PWM Mode" id="pwm-mode"
                                 defaultValue={0}
                                 options={[
-                                    {value: 0, label: 'Mode 1'},
-                                    {value: 1, label: 'Mode 1'}
+                                    { value: 0, label: 'Mode 1' },
+                                    { value: 1, label: 'Mode 1' }
                                 ]}
                             />
                         </div>
                     </div>
-                }    
+                }
             </div>
             <div className="pt-5">
                 <button

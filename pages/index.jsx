@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import { CalculatorForm } from "../components/calculator-form"
-import { getPrescaler, getPrescalerAndARR } from "../utils/calculator"
-import { getCalculatorMode, CALC_PRESCALER_ARR, CALC_PRESCALER } from "../utils/calculator-mode"
+import { getARR, getPrescaler, getPrescalerAndARR } from "../utils/calculator"
+import { getCalculatorMode, CALC_PRESCALER_ARR, CALC_PRESCALER, CALC_ARR, CALC_PERIOD } from "../utils/calculator-mode"
 
 const Index = () => {
+    const [error, setError] = useState()
     const [result, setResult] = useState()
 
     const onCalculateFormSubmit = (e) => {
         e.preventDefault()
+        setError()
 
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData)
@@ -17,12 +19,20 @@ const Index = () => {
 
         switch (mode) {
             case CALC_PRESCALER_ARR:
-                console.log('here')
                 res = getPrescalerAndARR(data.pulse, data.period)
-                break;
+                break
             case CALC_PRESCALER:
                 res = getPrescaler(data.pulse, data.period, data.arr)
-                break;
+                break
+            case CALC_ARR:
+                res = getARR(data.pulse, data.period, data.prescaler)
+                break
+            case CALC_PERIOD:
+                res = getPeriodInSeconds(data.pulse, data.prescaler, data.arr)
+                break
+            default:
+                setError("Could not find a value to calculate. Are you missing some input values?")
+                break
         }
 
         setResult(res)
@@ -41,7 +51,7 @@ const Index = () => {
                 </h1>
                 <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">A simple to use calculator for all your CT2 exam questions considering Timers and Counters. By Felix Saaro and Niklas van der Heide</p>
             </div>
-            <CalculatorForm onSubmit={onCalculateFormSubmit} />
+            <CalculatorForm onSubmit={onCalculateFormSubmit} error={error} />
         </div>
     )
 }

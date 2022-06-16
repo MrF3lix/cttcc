@@ -27,7 +27,7 @@ export const getPrescalerAndARR = (pulsesInHz, periodInNs, arrMax = 2 ** 32) => 
     return solutions
 }
 
-function getARR(pulsesInHz, periodInNs, prescaler) {
+export const getARR = (pulsesInHz, periodInNs, prescaler) => {
     /*
     let ticksInHz = pulsesInHz / prescaler
     let secondsPerTick = 1 / ticksInHz;
@@ -56,7 +56,7 @@ export const getPrescaler = (pulsesInHz, periodInNs, arr) => {
     return (periodInNs * pulsesInHz) / (10 ** 9 * arr)
 }
 
-function getPeriodInSeconds(pulsesInHz, prescaler, arr) {
+export const getPeriodInSeconds = (pulsesInHz, prescaler, arr) => {
     /*
     let ticksInHz = pulsesInHz / prescaler
     let secondsPerTick = 1 / ticksInHz
