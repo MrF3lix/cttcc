@@ -41,7 +41,7 @@ function getARR(pulsesInHz, periodInNs, prescaler) {
     return (periodInNs * pulsesInHz) / (10 ** 9 * prescaler)
 }
 
-function getPrescaler(pulsesInHz, periodInNs, arr) {
+export const getPrescaler = (pulsesInHz, periodInNs, arr) => {
     /*
     let nsPerTick = periodInNs / arr
     let sPerTick = nsPerTick / 10**9
@@ -82,9 +82,9 @@ function getPulsesInHz(periodInNs, arr, prescaler){
 
 // Testing
 
-let pulsesInHz = 10 ** 7
-let periodInNs = 62 * 1000000
-let arrMax = 2 ** 32
+// let pulsesInHz = 10 ** 7
+// let periodInNs = 62 * 1000000
+// let arrMax = 2 ** 32
 
-let solutions = getPrescalerAndARR(pulsesInHz, periodInNs, arrMax)
-console.table(solutions)
+// let solutions = getPrescalerAndARR(pulsesInHz, periodInNs, arrMax)
+// console.table(solutions)

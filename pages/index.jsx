@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { CalculatorForm } from "../components/calculator-form"
-import { getPrescalerAndARR } from "../utils/calculator"
-import { getCalculatorMode, CALC_PRESCALER_ARR } from "../utils/calculator-mode"
+import { getPrescaler, getPrescalerAndARR } from "../utils/calculator"
+import { getCalculatorMode, CALC_PRESCALER_ARR, CALC_PRESCALER } from "../utils/calculator-mode"
 
 const Index = () => {
     const [result, setResult] = useState()
@@ -13,15 +13,24 @@ const Index = () => {
         const data = Object.fromEntries(formData)
         const mode = getCalculatorMode(data)
 
+        let res = undefined
+
         switch (mode) {
             case CALC_PRESCALER_ARR:
-                setResult(getPrescalerAndARR(data.pulse, data.periodInNs, 2 ** 32))
+                console.log('here')
+                res = getPrescalerAndARR(data.pulse, data.period)
+                break;
+            case CALC_PRESCALER:
+                res = getPrescaler(data.pulse, data.period, data.arr)
+                break;
         }
+
+        setResult(res)
     }
 
     useEffect(() => {
         console.table(result)
-    }, [])
+    }, [result])
 
     return (
         <div className="max-w-7xl mx-auto py-6 px-6 lg:px-8">
