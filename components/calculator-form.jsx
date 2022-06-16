@@ -28,6 +28,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         <InputNumber
                             label="Prescaler"
                             id="prescaler"
+                            defaultValue={1000}
                             description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
                         />
                         <InputNumber

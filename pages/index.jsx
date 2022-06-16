@@ -11,7 +11,7 @@ import {
     CALC_PULSES
 } from "../utils/calculator-mode"
 
-const inputFields = {
+const variables = {
     'pulse': { displayName: 'Pulses', unit: 'Hz' },
     'prescaler': { displayName: 'Prescaler' },
     'arr': { displayName: 'ARR' },
@@ -32,29 +32,35 @@ const Index = () => {
         const mode = getCalculatorMode(data)
 
         let res = undefined
-        let inputs = Object.keys(data).map(k => ({ ...inputFields[k], value: data[k] })).filter(i => i.value && i.value.length > 0)
+        let inputs = Object.keys(data).map(k => ({ ...variables[k], value: data[k] })).filter(i => i.value && i.value.length > 0)
+        let output = undefined
 
         switch (mode) {
             case CALC_PRESCALER_ARR:
                 res = getPrescalerAndARR(data.pulse, data.period)
+                output = [variables['prescaler'], variables['arr']]
                 break
             case CALC_PRESCALER:
                 res = getPrescaler(data.pulse, data.period, data.arr)
+                output = variables['prescaler']
                 break
             case CALC_ARR:
                 res = getARR(data.pulse, data.period, data.prescaler)
+                output = variables['arr']
                 break
             case CALC_PERIOD:
                 res = getPeriodInSeconds(data.pulse, data.prescaler, data.arr)
+                output = variables['period']
                 break
             case CALC_PULSES:
                 res = getPulsesInHz(data.period, data.arr, data.prescaler)
+                output = variables['pulses']
             default:
                 setError("Could not find a value to calculate. Are you missing some input values?")
                 break
         }
 
-        setResult({ value: res, mode, inputs })
+        setResult({ value: res, mode, inputs, output })
     }
 
     return (
