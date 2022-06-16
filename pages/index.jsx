@@ -1,7 +1,16 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { CalculatorForm } from "../components/calculator-form"
+import { Result } from "../components/result"
 import { getARR, getPrescaler, getPrescalerAndARR } from "../utils/calculator"
 import { getCalculatorMode, CALC_PRESCALER_ARR, CALC_PRESCALER, CALC_ARR, CALC_PERIOD } from "../utils/calculator-mode"
+
+const inputFields = {
+    'pulse': { displayName: 'Pulses', unit: 'Hz' },
+    'prescaler': { displayName: 'Prescaler' },
+    'arr': { displayName: 'ARR' },
+    'ticks': { displayName: 'Ticks', unit: 'Hz' },
+    'period': { displayName: 'Period', unit: 'ms' },
+}
 
 const Index = () => {
     const [error, setError] = useState()
@@ -16,6 +25,7 @@ const Index = () => {
         const mode = getCalculatorMode(data)
 
         let res = undefined
+        let inputs = Object.keys(data).map(k => ({ ...inputFields[k], value: data[k] })).filter(i => i.value && i.value.length > 0)
 
         switch (mode) {
             case CALC_PRESCALER_ARR:
@@ -35,12 +45,8 @@ const Index = () => {
                 break
         }
 
-        setResult(res)
+        setResult({ value: res, mode, inputs })
     }
-
-    useEffect(() => {
-        console.table(result)
-    }, [result])
 
     return (
         <div className="max-w-7xl mx-auto py-6 px-6 lg:px-8">
@@ -52,6 +58,7 @@ const Index = () => {
                 <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">A simple to use calculator for all your CT2 exam questions considering Timers and Counters. By Felix Saaro and Niklas van der Heide</p>
             </div>
             <CalculatorForm onSubmit={onCalculateFormSubmit} error={error} />
+            <Result result={result} />
         </div>
     )
 }

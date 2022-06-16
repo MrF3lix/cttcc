@@ -22,6 +22,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         <InputNumber
                             label="Pulses [Hz]"
                             id="pulse"
+                            defaultValue={84000000}
                             description="Describes the incoming frequency from either the internal clock or an other timers."
                         />
                         <InputNumber
@@ -47,6 +48,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         <InputNumber
                             label="Period [ms]"
                             id="period"
+                            defaultValue={62000000}
                             description="Time it takes to reach the overflow (Tick * AAR)"
                         />
                         <InputSelect
