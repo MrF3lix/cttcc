@@ -13,25 +13,21 @@ export const CalculatorForm = ({onSubmit}) => (
                     <InputNumber
                         label="Pulses [Hz]"
                         id="pulse"
-                        defaultValue={84_000_000}
                         description="Describes the incoming frequency from either the internal clock or an other timers."
                     />
                     <InputNumber
                         label="Prescaler"
                         id="prescaler"
-                        defaultValue={8_400}
                         description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
                     />
                     <InputNumber
-                        label="AAR"
-                        id="aar"
-                        defaultValue={2_000}
+                        label="ARR"
+                        id="arr"
                         description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
                     />
                     <InputNumber
                         label="Ticks [Hz]"
                         id="ticks"
-                        defaultValue={10_000}
                         description="Ticks equal the output for the prescaler (Pulse/Prescaler)."
                     />
                     {/* <InputNumber
@@ -42,7 +38,6 @@ export const CalculatorForm = ({onSubmit}) => (
                     <InputNumber
                         label="Period [ms]"
                         id="period"
-                        defaultValue={200}
                         description="Time it takes to reach the overflow (Tick * AAR)"
                     />
                     <InputSelect

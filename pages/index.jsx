@@ -1,4 +1,5 @@
 import { CalculatorForm } from "../components/calculator-form"
+import { getCalculatorMode } from "../utils/calculator-mode"
 
 const Index = () => {
 
@@ -7,7 +8,10 @@ const Index = () => {
 
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData)
-        console.log(data)
+
+        const mode = getCalculatorMode(data)
+
+        console.log({ mode }, data)
     }
 
     return (

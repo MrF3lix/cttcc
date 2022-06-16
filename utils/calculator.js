@@ -5,7 +5,7 @@ Pulses given:
     1. Period given -> return Prescaler & ARR | Done
     2. ARR and Period given  -> return Prescaler | Done
     3. Prescaler and Period given -> return ARR | Done
-    3. ARR and Prescaler given  -> return Period | Done
+    4. ARR and Prescaler given  -> return Period | Done
 
 Pulses not given:
     1. Period, Prescaler and RRR given -> return Pulses | Done
