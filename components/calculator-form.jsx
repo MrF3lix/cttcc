@@ -1,12 +1,11 @@
 import { InputNumber } from "./form/input-number";
 import { InputSelect } from "./form/input-select";
-import ExtensionButton from "./extension-button";
 import { useState } from "react";
+import ToggleButton from "./toggle-button";
 
-export const CalculatorForm = ({onSubmit}) => {
+export const CalculatorForm = ({ onSubmit }) => {
     
-    const [displayDCInputs, setDisplayDCInputs ]= useState(false)
-    const toggleDCInputs = () => setDisplayDCInputs(!displayDCInputs)
+    const [ displayDCInputs, setDisplayDCInputs ] = useState(false)
     
     return (
         <form className="space-y-8 divide-y divide-gray-200"onSubmit={onSubmit}>
@@ -59,7 +58,10 @@ export const CalculatorForm = ({onSubmit}) => {
                     </div>
                 </div>
 
-                <ExtensionButton action={toggleDCInputs} />
+                <ToggleButton
+                    state={displayDCInputs}
+                    setState={setDisplayDCInputs}
+                />
 
                 {displayDCInputs &&
                     <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
