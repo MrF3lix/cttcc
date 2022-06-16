@@ -1,15 +1,15 @@
-import {InputNumber} from "./form/input-number";
-import {InputSelect} from "./form/input-select";
+import { InputNumber } from "./form/input-number";
+import { InputSelect } from "./form/input-select";
 import ExtensionButton from "./extension-button";
-import {useState} from "react";
+import { useState } from "react";
 
-export const CalculatorForm = () => {
+export const CalculatorForm = ({onSubmit}) => {
     
     const [displayDCInputs, setDisplayDCInputs ]= useState(false)
     const toggleDCInputs = () => setDisplayDCInputs(!displayDCInputs)
     
     return (
-        <form className="space-y-8 divide-y divide-gray-200">
+        <form className="space-y-8 divide-y divide-gray-200"onSubmit={onSubmit}>
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                     <div>
@@ -20,36 +20,36 @@ export const CalculatorForm = () => {
                     <div className="space-y-6 sm:space-y-5">
                         <InputNumber
                             label="Pulses [Hz]"
-                            defaultValue={84_000_000}
+                            id="pulse"
                             description="Describes the incoming frequency from either the internal clock or an other timers."
                         />
                         <InputNumber
                             label="Prescaler"
-                            defaultValue={8_400}
+                            id="prescaler"
                             description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
                         />
                         <InputNumber
-                            label="AAR"
-                            defaultValue={2_000}
+                            label="ARR"
+                            id="arr"
                             description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
                         />
                         <InputNumber
                             label="Ticks [Hz]"
-                            defaultValue={10_000}
+                            id="ticks"
                             description="Ticks equal the output for the prescaler (Pulse/Prescaler)."
                         />
-                        <InputNumber
-                            label="Period [ns]"
+                        {/*<InputNumber
+                            label="Tick [ns]"
                             defaultValue={100_000}
                             description="Time it takes for one tick."
-                        />
+                        />*/}
                         <InputNumber
-                            label="Time to Overflow [ms"
-                            defaultValue={200}
-                            description="Time it takes for one tick."
+                            label="Period [ms]"
+                            id="period"
+                            description="Time it takes to reach the overflow (Tick * AAR)"
                         />
                         <InputSelect
-                            label="Mode"
+                            label="Mode"id="mode"
                             defaultValue={0}
                             options={[
                                 {value: 0, label: 'Up Counting'},
@@ -70,13 +70,13 @@ export const CalculatorForm = () => {
                         </div>
                         <div className="space-y-6 sm:space-y-5">
                             <InputNumber
-                                label="Duty Cycle [%]"
+                                label="Duty Cycle [%]"id="duty-cycle"
                             />
                             <InputNumber
                                 label="CCR"
-                            />
+                            id="cct"/>
                             <InputSelect
-                                label="PWM Mode"
+                                label="PWM Mode"id="pwm-mode"
                                 defaultValue={0}
                                 options={[
                                     {value: 0, label: 'Mode 1'},
