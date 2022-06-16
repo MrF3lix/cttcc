@@ -1,5 +1,6 @@
 import { InputNumber } from "./form/input-number";
 import { InputSelect } from "./form/input-select";
+import ExtensionButton from "./extension-button";
 
 export const CalculatorForm = () => (
     <form className="space-y-8 divide-y divide-gray-200">
@@ -50,6 +51,9 @@ export const CalculatorForm = () => (
                     />
                 </div>
             </div>
+            
+            <ExtensionButton/>
+            
             <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                 <div>
                     <h3 className="text-lg leading-6 font-medium text-gray-900">Duty Cycle Inputs</h3>
