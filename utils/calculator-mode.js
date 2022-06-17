@@ -13,7 +13,7 @@ export const getCalculatorMode = (input) => {
     // Duty Cycle
     
     if (hasAllDefault){
-        if (hasModeCompCycle(input) && !exists(input.ccr)) {
+        if (hasCountingComparisonCycle(input) && !exists(input.ccr)) {
             return CALC_CCR
         }
         
@@ -51,7 +51,7 @@ const hasPulseArrPrescaler = input => exists(input.pulses) && exists(input.arr) 
 const hasPeriodArrPrescaler = input => exists(input.period) && exists(input.arr) && exists(input.prescaler)
 
 const hasAllDefault = input => exists(input.pulses) && exists(input.prescaler) && exists(input.arr) && exists(input.period) 
-const hasModeCompCycle = input => exists(input.counting) && exists(input.comparison) && exists(input.cycle)
+const hasCountingComparisonCycle = input => exists(input.counting) && exists(input.comparison) && exists(input.cycle)
 
 
 const exists = val => val && val.length > 0

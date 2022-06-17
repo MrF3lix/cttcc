@@ -21,19 +21,19 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                     </div>
                     <div className="space-y-6 sm:space-y-5">
                         <InputNumber
-                            label="Pulses [Hz]"
                             id="pulses"
-                            defaultValue={84000000}
+                            label="Pulses [Hz]"
                             description="Describes the incoming frequency from either the internal clock or an other timers."
+                            defaultValue={84000000}
                         />
                         <InputNumber
-                            label="Prescaler"
                             id="prescaler"
+                            label="Prescaler"
                             description="Scales the incoming pulses by a defined value. Only every n-th pulses is sent to the counter."
                         />
                         <InputNumber
+                            id="prescaler"
                             label="ARR"
-                            id="arr"
                             description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
                         />
                         {/* <InputNumber
@@ -47,10 +47,10 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             description="Time it takes for one tick."
                         />*/}
                         <InputNumber
-                            label="Period [ms]"
                             id="period"
+                            label="Period [ms]"
+                            description="Time it takes to reach the overflow."
                             defaultValue={62}
-                            description="Time it takes to reach the overflow (Tick * AAR)."
                         />
                     </div>
                 </div>
@@ -64,34 +64,36 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                     <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                         <div>
                             <h3 className="text-lg leading-6 font-medium text-gray-900">Duty Cycle Inputs</h3>
-                            <p className="mt-1 max-w-2xl text-sm text-gray-500">Fill in all the given information and see
-                                the magic happen.</p>
+                            <p className="mt-1 max-w-2xl text-sm text-gray-500">To do Duty Cycle calculations make sure that all default inputs are filled out.</p>
                         </div>
                         <div className="space-y-6 sm:space-y-5">
                             <InputSelect
-                                label="Counting Mode" id="counting"
+                                id="counting"
+                                label="Counting Mode"
+                                description="The counting mode of the counter."
                                 defaultValue={0}
                                 options={[
                                     { value: 0, label: 'Up Counting' },
                                     { value: 1, label: 'Down Counting' }
                                 ]}
-                                description="The counting mode of the counter."
                             />
                             <InputCompare
-                                label="PWM Comparison" id="comparison"
+                                id="comparison"
+                                label="PWM Comparison"
+                                description="The criteria used for a Duty Cycle being active."
                                 defaultValue={'<'}
                                 comparisons={['<', '<=', '>', '>=']}
                                 option1={"CNT"}
                                 option2={"CCR"}
-                                description="The criteria used for a Duty Cycle being active."
                             />
                             <InputNumber
-                                label="Duty Cycle [%]" id="cycle"
+                                id="cycle"
+                                label="Duty Cycle [%]"
                                 description="The % of the period where the Duty Cycle should be active."
                             />
                             <InputNumber
-                                label="CCR"
                                 id="ccr"
+                                label="CCR"
                                 description="The value used for the comparison deciding if the Duty Cycle is active."
                             />
                             
