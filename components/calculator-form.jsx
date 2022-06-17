@@ -36,11 +36,11 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             id="arr"
                             description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
                         />
-                        <InputNumber
+                        {/* <InputNumber
                             label="Ticks [Hz]"
                             id="ticks"
                             description="Ticks equal the output for the prescaler (Pulse/Prescaler)."
-                        />
+                        /> */}
                         {/*<InputNumber
                             label="Tick [ns]"
                             defaultValue={100_000}
