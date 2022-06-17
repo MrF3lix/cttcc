@@ -12,7 +12,7 @@ import {
 } from "../utils/calculator-mode"
 
 const variables = {
-    'pulse': { displayName: 'Pulses', unit: 'Hz' },
+    'pulses': { displayName: 'Pulses', unit: 'Hz' },
     'prescaler': { displayName: 'Prescaler' },
     'arr': { displayName: 'ARR' },
     'ticks': { displayName: 'Ticks', unit: 'Hz' },
@@ -59,6 +59,7 @@ const Index = () => {
             case CALC_PULSES:
                 res = getPulsesInHz(data.period, data.arr, data.prescaler)
                 output = variables['pulses']
+                break
             default:
                 setError("Could not find a value to calculate. Are you missing some input values?")
                 break
