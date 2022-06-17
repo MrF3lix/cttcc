@@ -2,8 +2,6 @@ import { CALC_PRESCALER_ARR } from "../utils/calculator-mode"
 
 export const Result = ({ result }) => {
     if (!result) return <></>
-
-    console.log(result)
     
     return (
         <div className="mt-20">
