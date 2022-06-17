@@ -28,7 +28,6 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         <InputNumber
                             label="Prescaler"
                             id="prescaler"
-                            defaultValue={1000}
                             description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
                         />
                         <InputNumber
@@ -49,7 +48,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         <InputNumber
                             label="Period [ms]"
                             id="period"
-                            defaultValue={62000000}
+                            defaultValue={62}
                             description="Time it takes to reach the overflow (Tick * AAR)"
                         />
                     </div>
