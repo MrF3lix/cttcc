@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CalculatorForm } from "../components/calculator-form"
 import { Result } from "../components/result"
-import { getARR, getPrescaler, getPrescalerAndARR, getPulsesInHz } from "../utils/calculator"
+import { getARR, getPrescaler, getPrescalerAndARR, getPulsesInHz, getPeriodInSeconds } from "../utils/calculator"
 import {
     getCalculatorMode,
     CALC_PRESCALER_ARR,
