@@ -59,6 +59,7 @@ const Index = () => {
             case CALC_PULSES:
                 res = getPulsesInHz(data.period, data.arr, data.prescaler)
                 output = variables['pulses']
+                break
             default:
                 setError("Could not find a value to calculate. Are you missing some input values?")
                 break
