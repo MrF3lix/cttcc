@@ -54,6 +54,8 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                     </div>
                 </div>
 
+                {/*
+              
                 <ToggleButton
                     state={displayDCInputs}
                     setState={setDisplayDCInputs}
@@ -92,6 +94,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         </div>
                     </div>
                 }
+                */}
             </div>
             <div className="pt-5">
                 <button
