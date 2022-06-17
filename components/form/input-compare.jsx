@@ -8,7 +8,7 @@ export const InputCompare = ({ label, description, option1, option2, comparisons
                 {...rest}
             >
                 {comparisons.map((comparison, i) => (
-                    <option value={comparison.value} key={i}>{comparison.label}</option>
+                    <option value={comparison} key={i}>{comparison}</option>
                 ))}
             </select>
             <p className="text-sm font-medium ml-2">{option2}</p>

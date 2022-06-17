@@ -80,12 +80,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             <InputCompare
                                 label="PWM Comparison" id="pwm-comparison"
                                 defaultValue={0}
-                                comparisons={[
-                                    { value: 0, label: '<' },
-                                    { value: 1, label: '<=' },
-                                    { value: 2, label: '>' },
-                                    { value: 3, label: '>=' },
-                                ]}
+                                comparisons={['<', '<=', '>', '>=']}
                                 option1={"CNT"}
                                 option2={"CCR"}
                                 description="The criteria used for a Duty Cycle being active."
