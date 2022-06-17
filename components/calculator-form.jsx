@@ -81,7 +81,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             />
                             <InputNumber
                                 label="CCR"
-                                id="cct" />
+                                id="ccr" />
                             <InputSelect
                                 label="PWM Mode" id="pwm-mode"
                                 defaultValue={0}

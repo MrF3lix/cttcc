@@ -17,6 +17,10 @@ const variables = {
     'arr': { displayName: 'ARR' },
     'ticks': { displayName: 'Ticks', unit: 'Hz' },
     'period': { displayName: 'Period', unit: 'ms' },
+    'mode': { displayName: 'Mode' },
+    'duty-cycle': { displayName: 'Duty Cycle', unit: '%' },
+    'crr': { displayName: 'CCR' },
+    'pwm-mode': { displayName: 'PWM Mode' },
 }
 
 const Index = () => {
