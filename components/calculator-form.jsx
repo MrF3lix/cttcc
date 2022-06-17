@@ -52,14 +52,6 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             defaultValue={62000000}
                             description="Time it takes to reach the overflow (Tick * AAR)"
                         />
-                        <InputSelect
-                            label="Mode" id="mode"
-                            defaultValue={0}
-                            options={[
-                                { value: 0, label: 'Up Counting' },
-                                { value: 1, label: 'Down Counting' }
-                            ]}
-                        />
                     </div>
                 </div>
 
@@ -76,6 +68,14 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                                 the magic happen.</p>
                         </div>
                         <div className="space-y-6 sm:space-y-5">
+                            <InputSelect
+                                label="Mode" id="mode"
+                                defaultValue={0}
+                                options={[
+                                    { value: 0, label: 'Up Counting' },
+                                    { value: 1, label: 'Down Counting' }
+                                ]}
+                            />
                             <InputNumber
                                 label="Duty Cycle [%]" id="duty-cycle"
                             />
@@ -86,8 +86,8 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                                 label="PWM Mode" id="pwm-mode"
                                 defaultValue={0}
                                 options={[
-                                    { value: 0, label: 'Mode 1' },
-                                    { value: 1, label: 'Mode 1' }
+                                    { value: 1, label: 'Mode 1' },
+                                    { value: 2, label: 'Mode 2' }
                                 ]}
                             />
                         </div>
