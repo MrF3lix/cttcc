@@ -22,14 +22,14 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                     <div className="space-y-6 sm:space-y-5">
                         <InputNumber
                             label="Pulses [Hz]"
-                            id="pulse"
+                            id="pulses"
                             defaultValue={84000000}
                             description="Describes the incoming frequency from either the internal clock or an other timers."
                         />
                         <InputNumber
                             label="Prescaler"
                             id="prescaler"
-                            description="Scales the incoming pulse by a defined value. Only every n-th pulse is sent to the counter."
+                            description="Scales the incoming pulses by a defined value. Only every n-th pulses is sent to the counter."
                         />
                         <InputNumber
                             label="ARR"
@@ -69,7 +69,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                         </div>
                         <div className="space-y-6 sm:space-y-5">
                             <InputSelect
-                                label="Mode" id="mode"
+                                label="Counting Mode" id="counting"
                                 defaultValue={0}
                                 options={[
                                     { value: 0, label: 'Up Counting' },
@@ -78,15 +78,15 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                                 description="The counting mode of the counter."
                             />
                             <InputCompare
-                                label="PWM Comparison" id="pwm-comparison"
-                                defaultValue={0}
+                                label="PWM Comparison" id="comparison"
+                                defaultValue={'<'}
                                 comparisons={['<', '<=', '>', '>=']}
                                 option1={"CNT"}
                                 option2={"CCR"}
                                 description="The criteria used for a Duty Cycle being active."
                             />
                             <InputNumber
-                                label="Duty Cycle [%]" id="duty-cycle"
+                                label="Duty Cycle [%]" id="cycle"
                                 description="The % of the period where the Duty Cycle should be active."
                             />
                             <InputNumber

@@ -17,8 +17,7 @@ Pulses not given:
 const prescalerMax = 2 ** 16
 const arrMax = 2 ** 32
 
-export const getPrescalerAndARR = (pulsesInHz, periodInMs) => {
-    console.log(pulsesInHz, periodInMs)
+export const calcPrescalerARR = (pulsesInHz, periodInMs) => {
     let solutions = []
     for (let prescaler = 0; prescaler < prescalerMax; prescaler++) {
         const arr = (periodInMs * pulsesInHz) / (10 ** 3 * prescaler)
@@ -29,7 +28,7 @@ export const getPrescalerAndARR = (pulsesInHz, periodInMs) => {
     return solutions
 }
 
-export const getARR = (pulsesInHz, periodInMs, prescaler) => {
+export const calcARR = (pulsesInHz, periodInMs, prescaler) => {
     /*
     let ticksInHz = pulsesInHz / prescaler
     let secondsPerTick = 1 / ticksInHz;
@@ -43,7 +42,7 @@ export const getARR = (pulsesInHz, periodInMs, prescaler) => {
     return (periodInMs * pulsesInHz) / (10 ** 3 * prescaler)
 }
 
-export const getPrescaler = (pulsesInHz, periodInMs, arr) => {
+export const calcPrescaler = (pulsesInHz, periodInMs, arr) => {
     /*
     let nsPerTick = periodInNs / arr
     let sPerTick = nsPerTick / 10**9
@@ -58,7 +57,7 @@ export const getPrescaler = (pulsesInHz, periodInMs, arr) => {
     return (periodInMs * pulsesInHz) / (10 ** 3 * arr)
 }
 
-export const getPeriodInSeconds = (pulsesInHz, prescaler, arr) => {
+export const calcPeriod = (pulsesInHz, prescaler, arr) => {
     /*
     let ticksInHz = pulsesInHz / prescaler
     let secondsPerTick = 1 / ticksInHz
@@ -69,7 +68,7 @@ export const getPeriodInSeconds = (pulsesInHz, prescaler, arr) => {
     return prescaler * arr / pulsesInHz
 }
 
-export const getPulsesInHz = (periodInMs, arr, prescaler) => {
+export const calcPulses = (periodInMs, arr, prescaler) => {
     /*
     let nsPerPulse = periodInNs / (arr * prescaler)
     let secondsPerPulse = nsPerPulse / 10 ** 9
@@ -84,7 +83,7 @@ export const getPulsesInHz = (periodInMs, arr, prescaler) => {
 
 // Duty Cycle
 
-export const getCCR = (arr, pwmComparison, cyclePercent) => {
+export const calcCCR = (arr, pwmComparison, cyclePercent) => {
     const intersection = Math.floor(arr * (cyclePercent/100))
     
     switch (pwmComparison){

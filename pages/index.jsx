@@ -1,26 +1,29 @@
 import { useState } from "react"
 import { CalculatorForm } from "../components/calculator-form"
 import { Result } from "../components/result"
-import { getARR, getPrescaler, getPrescalerAndARR, getPulsesInHz, getPeriodInSeconds } from "../utils/calculator"
+import {calcARR, calcPrescaler, calcPrescalerARR, calcPulses, calcPeriod, calcCCR} from "../utils/calculator"
 import {
     getCalculatorMode,
     CALC_PRESCALER_ARR,
     CALC_PRESCALER,
     CALC_ARR,
     CALC_PERIOD,
-    CALC_PULSES
+    CALC_PULSES,
+    CALC_CCR
 } from "../utils/calculator-mode"
 
 const variables = {
-    'pulse': { displayName: 'Pulses', unit: 'Hz' },
+    //Default
+    'pulses': { displayName: 'Pulses', unit: 'Hz' },
     'prescaler': { displayName: 'Prescaler' },
     'arr': { displayName: 'ARR' },
     'ticks': { displayName: 'Ticks', unit: 'Hz' },
     'period': { displayName: 'Period', unit: 'ms' },
-    'mode': { displayName: 'Mode' },
-    'duty-cycle': { displayName: 'Duty Cycle', unit: '%' },
-    'crr': { displayName: 'CCR' },
-    'pwm-mode': { displayName: 'PWM Mode' },
+    // Duty Cycle
+    'counting': { displayName: 'Counting Mode' },
+    'comparison': { displayName: 'PWM Comparison' },
+    'cycle': { displayName: 'Duty Cycle', unit: '%' },
+    'ccr': { displayName: 'CCR' },
 }
 
 const Index = () => {
@@ -34,32 +37,38 @@ const Index = () => {
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData)
         const mode = getCalculatorMode(data)
-
+        
         let res = undefined
         let inputs = Object.keys(data).map(k => ({ ...variables[k], value: data[k] })).filter(i => i.value && i.value.length > 0)
         let output = undefined
 
         switch (mode) {
             case CALC_PRESCALER_ARR:
-                res = getPrescalerAndARR(data.pulse, data.period)
+                res = calcPrescalerARR(data.pulses, data.period)
                 output = [variables['prescaler'], variables['arr']]
                 break
             case CALC_PRESCALER:
-                res = getPrescaler(data.pulse, data.period, data.arr)
+                res = calcPrescaler(data.pulses, data.period, data.arr)
                 output = variables['prescaler']
                 break
             case CALC_ARR:
-                res = getARR(data.pulse, data.period, data.prescaler)
+                res = calcARR(data.pulses, data.period, data.prescaler)
                 output = variables['arr']
                 break
             case CALC_PERIOD:
-                res = getPeriodInSeconds(data.pulse, data.prescaler, data.arr)
+                res = calcPeriod(data.pulses, data.prescaler, data.arr)
                 output = variables['period']
                 break
             case CALC_PULSES:
-                res = getPulsesInHz(data.period, data.arr, data.prescaler)
-                output = variables['pulse']
+                res = calcPulses(data.period, data.arr, data.prescaler)
+                output = variables['pulses']
                 break
+            
+            case CALC_CCR:
+                res = calcCCR(data.arr, data.comparison, data.cycle)
+                output = variables['ccr']
+                break
+            
             default:
                 setError("Could not find a value to calculate. Are you missing some input values?")
                 break
