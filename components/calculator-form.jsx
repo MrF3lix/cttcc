@@ -2,6 +2,7 @@ import { InputNumber } from "./form/input-number";
 import { InputSelect } from "./form/input-select";
 import { useState } from "react";
 import ToggleButton from "./toggle-button";
+import {InputCompare} from "./form/input-compare";
 
 export const CalculatorForm = ({ onSubmit, error }) => {
 
@@ -49,13 +50,11 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             label="Period [ms]"
                             id="period"
                             defaultValue={62}
-                            description="Time it takes to reach the overflow (Tick * AAR)"
+                            description="Time it takes to reach the overflow (Tick * AAR)."
                         />
                     </div>
                 </div>
-
-                {/*
-              
+                
                 <ToggleButton
                     state={displayDCInputs}
                     setState={setDisplayDCInputs}
@@ -76,25 +75,34 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                                     { value: 0, label: 'Up Counting' },
                                     { value: 1, label: 'Down Counting' }
                                 ]}
+                                description="The counting mode of the counter."
+                            />
+                            <InputCompare
+                                label="PWM Comparison" id="pwm-comparison"
+                                defaultValue={0}
+                                comparisons={[
+                                    { value: 0, label: '<' },
+                                    { value: 1, label: '<=' },
+                                    { value: 2, label: '>' },
+                                    { value: 3, label: '>=' },
+                                ]}
+                                option1={"CNT"}
+                                option2={"CCR"}
+                                description="The criteria used for a Duty Cycle being active."
                             />
                             <InputNumber
                                 label="Duty Cycle [%]" id="duty-cycle"
+                                description="The % of the period where the Duty Cycle should be active."
                             />
                             <InputNumber
                                 label="CCR"
-                                id="ccr" />
-                            <InputSelect
-                                label="PWM Mode" id="pwm-mode"
-                                defaultValue={0}
-                                options={[
-                                    { value: 1, label: 'Mode 1' },
-                                    { value: 2, label: 'Mode 2' }
-                                ]}
+                                id="ccr"
+                                description="The value used for the comparison deciding if the Duty Cycle is active."
                             />
+                            
                         </div>
                     </div>
                 }
-                */}
             </div>
             <div className="pt-5">
                 <button
