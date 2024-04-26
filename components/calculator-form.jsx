@@ -32,7 +32,7 @@ export const CalculatorForm = ({ onSubmit, error }) => {
                             description="Scales the incoming pulses by a defined value. Only every n-th pulses is sent to the counter."
                         />
                         <InputNumber
-                            id="prescaler"
+                            id="arr"
                             label="ARR"
                             description="Auto Reload Register. Defines after how many ticks the counter should reset the initial state."
                         />
